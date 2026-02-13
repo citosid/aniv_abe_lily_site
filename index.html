@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your Table | Lily & Abe's 15th Anniversary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main x-data="seatingChart()">
+    <header>
+      <h1>Lily & Abe's</h1>
+      <p class="subtitle">15th Anniversary</p>
+      <div class="flourish" aria-hidden="true">&#10022;</div>
+    </header>
+
+    <div class="search-container">
+      <label for="search">Find your table</label>
+      <input
+        type="text"
+        id="search"
+        x-model="query"
+        placeholder="Enter your last name"
+        aria-label="Search by last name"
+        autocomplete="off"
+      >
+    </div>
+
+    <div class="results" role="status" aria-live="polite">
+      <template x-for="guest in filteredGuests" :key="guest.name">
+        <div class="result-card">
+          <p class="result-card__name" x-text="guest.name"></p>
+          <p class="result-card__table" x-text="guest.table"></p>
+        </div>
+      </template>
+
+      <p class="no-results" x-show="showNoResults" x-cloak>
+        No match found. Try a different spelling.
+      </p>
+    </div>
+  </main>
+
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="app.js?v=1770994631"></script>
+</body>
+</html>
